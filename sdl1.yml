@@ -1,0 +1,53 @@
+---
+version: "2.0"
+services:
+  custom-comfyui:
+    image: oscar2468/cuda_pytorch_comfyui_jupyter
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+    params:
+      storage:
+        workspace:
+          mount: /workspace
+          readOnly: false
+profiles:
+  compute:
+    custom-comfyui:
+      resources:
+        cpu:
+          units: 3
+        memory:
+          size: 60GB
+        storage:
+          - size: 20Gi
+          - name: workspace
+            size: 70Gi
+            attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 3
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtxa6000
+                  ram: 48Gi
+                  interface: pcie
+  placement:
+    dcloud:
+      pricing:
+        custom-comfyui:
+          denom: uakt
+          amount: 1000
+deployment:
+  custom-comfyui:
+    dcloud:
+      profile: custom-comfyui
+      count: 1
