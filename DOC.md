@@ -6,19 +6,24 @@ This document serves as a comprehensive guide on how to build, run, and deploy t
 
 ## Solutions Considered
 
-### 1. Build the Image Without the Models
+### 1. Build the Image Including the Model
 
-**Description**: This approach involves creating a Docker image that contains the ComfyUI application and its dependencies but does not include the custom models. See [Dockerfile](./Dockerfile) and [SDL](./sdl_no_models.yml)
+**Description**: This approach involved creating a Docker image that includes both the ComfyUI application and the custom models. [Dockerfile](./Dockerfile), The SDL is here: [SDL](./sdl.yml)
+
+**Issues that might be faced**:
+
+- **Large Image Size**: Including models significantly increases the size of the Docker image, making it cumbersome to build and deploy. This resulted in the image size being 18.77 GB when compressed.
+- **Deployment Timeouts**: The Akash network providers often timed out during the deployment process due to the lengthy build times associated with large images. N/B: This may be due to insufficient space, do well to add use right storage volume.
+
+### 2. Build the Image Without the Models
+
+**Description**: This approach involves creating a Docker image that contains the ComfyUI application and its dependencies but does not include the custom models. See [Dockerfile](./Dockerfile_noModels) and the SDL is same as no. 1 except with the tag being 1.0.0 and the custom script being added. [SDL](./sdl_no_models.yml)
 
 **Advantage**
 
 The absence of large model files results in a significantly smaller Docker image, making it faster to build and deploy. This resulted in an image size of 3.45GB when compressed.
 
-**Improvement**:
-
-One can include custom scripts to download a different set of models on starting the container.
-
-### 2. Using a Bash Script for Setup
+### 3. Using a Bash Script for Setup
 
 **Description**: Instead of building a Docker image, a bash script is utilized as a user-data script that runs on startup to download models and set up project dependencies (pytorch, cuda, python, etc). This still uses a prebuilt image with nvidia cuda 12.1.0 installed on ubuntu 22.04 Here's the [SDL](./sdl_no_image.yml)
 
@@ -28,16 +33,7 @@ One can include custom scripts to download a different set of models on starting
 - The script can be easily modified to accommodate changes in model requirements or dependencies.
 
 **Drawback**:
-Room for potential for errors. If the script fails during execution, it may leave the environment in an inconsistent state.
-
-### 3. Build the Image Including the Model
-
-**Description**: This approach involved creating a Docker image that includes both the ComfyUI application and the custom models. [Dockerfile](./Dockerfile_withModels), The SDL is same as no. 1 except with the tag being latest. - [SDL](./sdl.yml)
-
-**Issues Faced**:
-
-- **Large Image Size**: Including models significantly increases the size of the Docker image, making it cumbersome to build and deploy. This resulted in the image size being 18.77 GB when compressed.
-- **Deployment Timeouts**: The Akash network providers often timed out during the deployment process due to the lengthy build times associated with large images.
+Room for potential for errors. If the script fails during execution, it may leave the environment in an inconsistent state, and slow startup time.
 
 ## Building the Docker Image
 
