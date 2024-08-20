@@ -104,14 +104,14 @@ services:
         to:
           - global: true
     env:
-      - DOCKER_PAT=dckr_pat_mtXhrsJ4cgqqs4taet12RnRxMdo
+      - DOCKER_PAT=dckr_pat_2Dx_rg5eojM3t72it2kCe93Qheg
       - "SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCCeT7RpcTpn3hJE2HTC4r/lJh4xK0TVTcB4FqLNV7zDkG9PCr/RjpSCmEE1+KGH7BdF3Be+XbIGtdvFyKofjipc1ts872H1H/D65me5KpW1Pu9EW3m91uz8rkg6tl0g9IS19EjdGkB8BxwWdMTt1RtXqldd4ciAcKU5oUPaDpXO50CAn52wUtNaKaN0aUrLJ/Ls1PH1YWEe+B1AmG+Y2VK48GdMgHXImcqg51BTvnReRyWPleDRkSFvyPZUsm50Lf92f+9pZJw/tZv1DHLfM2rbGrfVCW1BBPiWGOSD0LKvA4Kc66ncaxRtGiCUPcRPIhP2uWXt77TldasgtaByfDd"
     args:
       - "sh"
       - "-c"
       - |
         apk add --no-cache git && \
-        git clone https://github.com/oscar2468/cuda_pytorch_comfyui_jupyter.git /workspace && \
+        git clone https://github.com/Cardoso-topdev/cuda_pytorch_comfyui_jupyter.git /workspace && \
         echo "$DOCKERHUB_TOKEN" | docker login -u oscar2468 -p ${DOCKER_PAT} && \
         /kaniko/executor --context=dir://workspace/ \
         --dockerfile=/workspace/Dockerfile \
