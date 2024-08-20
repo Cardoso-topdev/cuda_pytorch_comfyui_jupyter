@@ -64,4 +64,4 @@ services:
 
 ## Conclusion
 
-After evaluating the three solutions, the first option of building an image without including the model was deemed the most effective. It balances image size and deployment speed while allowing for flexibility in model management.
+After evaluating the three solutions, the second option of building an image without including the model might be deemed the most effective. It balances image size and deployment speed while allowing for flexibility in model management.
