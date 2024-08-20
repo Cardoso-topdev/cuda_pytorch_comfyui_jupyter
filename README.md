@@ -16,7 +16,7 @@ The provided Dockerfile is designed to run a ComfyUI instance with some specific
 
 ```bash
 # Clone repo
-git clone git@github.com:oscar2468/cuda_pytorch_comfyui_jupyter.git
+git clone git@github.com:Cardoso-topdev/cuda_pytorch_comfyui_jupyter.git
 cd cuda_pytorch_comfyui_jupyter
 
 # Build image
