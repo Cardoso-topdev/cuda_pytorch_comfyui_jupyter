@@ -14,11 +14,6 @@ services:
           - global: true
     env:
       - JUPYTER_PASSWORD=pass123
-    params:
-      storage:
-        workspace:
-          mount: /workspace
-          readOnly: false
 profiles:
   compute:
     comfyui-custom-models:
@@ -28,12 +23,9 @@ profiles:
         memory:
           size: 70GB
         storage:
-          - size: 20Gi
-          - name: workspace
-            size: 70Gi
-            attributes:
-              persistent: true
-              class: beta3
+          size: 70Gi
+          attributes:
+            class: beta3
         gpu:
           units: 2
           attributes:
