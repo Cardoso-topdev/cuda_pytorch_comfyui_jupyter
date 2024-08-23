@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   comfyui-custom-models:
-    image: oscar2468/cuda_pytorch_comfyui_jupyter:1.0.0
+    image: oscar2468/cuda_pytorch_comfyui_jupyter:1.1.0
     expose:
       - port: 8888
         as: 8888
@@ -23,9 +23,7 @@ profiles:
         memory:
           size: 70GB
         storage:
-          size: 70Gi
-          attributes:
-            class: beta3
+          - size: 30Gi
         gpu:
           units: 2
           attributes:
