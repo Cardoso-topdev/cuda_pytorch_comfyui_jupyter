@@ -23,6 +23,10 @@ This document serves as a comprehensive guide on how to build, run, and deploy t
 
 The absence of large model files results in a significantly smaller Docker image, making it faster to build and deploy. This resulted in an image size of 3.45GB when compressed.
 
+**Improvement**:
+
+One can include custom scripts to download a different set of models on starting the container.
+
 ### 3. Using a Bash Script for Setup
 
 **Description**: Instead of building a Docker image, a bash script is utilized as a user-data script that runs on startup to download models and set up project dependencies (pytorch, cuda, python, etc). This still uses a prebuilt image with nvidia cuda 12.1.0 installed on ubuntu 22.04 Here's the [SDL](./sdl_no_image.yml)
@@ -35,7 +39,7 @@ The absence of large model files results in a significantly smaller Docker image
 **Drawback**:
 Room for potential for errors. If the script fails during execution, it may leave the environment in an inconsistent state, and slow startup time.
 
-## Building the Docker Image
+## Build Docker Image and Deploy
 
 You can build the image using the following commands.
 
@@ -43,7 +47,13 @@ You can build the image using the following commands.
 docker build -t cuda_pytorch_comfyui_jupyter .
 
 # The above may take a long time so you could run it in the background
-nohup docker build -t cuda_pytorch_comfyui_jupyter . &
+nohup sudo docker build -t cuda_pytorch_comfyui_jupyter . &
+
+# Create tag
+sudo docker tag cuda_pytorch_comfyui_jupyter:latest oscar2468/cuda_pytorch_comfyui_jupyter:1.1.0
+
+# Push to docker
+sudo docker push oscar2468/cuda_pytorch_comfyui_jupyter:1.1.0
 ```
 
 [Click here](./Dockerfile) to see the Dockerfile.
@@ -64,4 +74,4 @@ services:
 
 ## Conclusion
 
-After evaluating the three solutions, the second option of building an image without including the model might be deemed the most effective. It balances image size and deployment speed while allowing for flexibility in model management.
+After evaluating the three solutions, the first option of building an image without including the model was deemed the most effective. It balances image size and deployment speed while allowing for flexibility in model management.

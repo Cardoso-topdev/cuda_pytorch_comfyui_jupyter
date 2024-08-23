@@ -25,29 +25,30 @@ services:
         mkdir -p /workspace/ComfyUI/models/checkpoints
         mkdir -p /workspace/ComfyUI/models/vae
 
-        cd /workspace/ComfyUI/models/deepbump/
-        wget https://github.com/HugoTini/DeepBump/blob/master/deepbump256.onnx
+        # These can be run inside of the start bash script
+        # cd /workspace/ComfyUI/models/deepbump/
+        # wget https://github.com/HugoTini/DeepBump/blob/master/deepbump256.onnx
 
 
-        cd /workspace/ComfyUI/models/ipadapter/
-        wget https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors
+        # cd /workspace/ComfyUI/models/ipadapter/
+        # wget https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors
 
 
-        cd /workspace/ComfyUI/models/clip_vision/
-        wget https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors
-        mv model.safetensors CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors
+        # cd /workspace/ComfyUI/models/clip_vision/
+        # wget https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors
+        # mv model.safetensors CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors
 
 
-        cd /workspace/ComfyUI/models/upscale_models/
-        wget https://huggingface.co/gemasai/4x_NMKD-Siax_200k/resolve/main/4x_NMKD-Siax_200k.pth
+        # cd /workspace/ComfyUI/models/upscale_models/
+        # wget https://huggingface.co/gemasai/4x_NMKD-Siax_200k/resolve/main/4x_NMKD-Siax_200k.pth
 
 
-        cd /workspace/ComfyUI/models/checkpoints/
-        wget https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/resolve/main/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors
-        wget https://civitai.com/api/download/models/456538 -O Juggernaut-XL_inpaint.safetensors
+        # cd /workspace/ComfyUI/models/checkpoints/
+        # wget https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/resolve/main/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors
+        # wget https://civitai.com/api/download/models/456538 -O Juggernaut-XL_inpaint.safetensors
 
-        cd /workspace/ComfyUI/models/vae/
-        wget https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
+        # cd /workspace/ComfyUI/models/vae/
+        # wget https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
 profiles:
   compute:
     custom-comfyui:

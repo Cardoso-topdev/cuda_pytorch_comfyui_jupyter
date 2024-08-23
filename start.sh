@@ -3,6 +3,7 @@
 cd /workspace/ComfyUI
 
 mkdir -p /workspace/ComfyUI/custom_nodes
+cd /workspace/ComfyUI/custom_nodes
 git clone --depth 1 https://github.com/jags111/ComfyUI_Jags_VectorMagic
 git clone --depth 1 https://github.com/WASasquatch/was-node-suite-comfyui
 git clone --depth 1 https://github.com/cubiq/ComfyUI_IPAdapter_plus
@@ -23,6 +24,10 @@ git clone --depth 1 https://github.com/gokayfem/ComfyUI-Texture-Simple
 git clone --depth 1 https://github.com/KoreTeknology/ComfyUI-Universal-Styler
 git clone --depth 1 https://github.com/jakechai/ComfyUI-JakeUpgrade
 git clone --depth 1 https://github.com/rgthree/rgthree-comfy
+git clone --depth 1 https://github.com/ltdrdata/ComfyUI-Manager
+
+# Install dependencies
+cd / && pip3 install -r requirements.txt
 
 # Create necessary directories
 mkdir -p /workspace/ComfyUI/models
